@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+/* Fundo com imagem */
+.bg-image {
+  min-height: 100vh;
+  position: relative;
+  background-color: rgba(42, 41, 41, 0.749);
+}
+
+.bg-image::after {
+  content: '';
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+  background-size: cover;
+  background-position: center;
+
+}
+
+/* Card */
+.card {
+  background-color: rgb(255, 255, 255);
+  /* leve transparência */
+  border-radius: 10px;
+}
+
+.form-control-login {
+  border: 1.9px solid #c4c5c56c;
+  padding: .7rem 1rem;
+}
+
+.form-control-login::placeholder {
+  color: #aaacac;
+}
+
+.form-control-login:focus{
+  box-shadow: none;
+  border: 2px solid rgba(1, 20, 8, 0.941);
+}
+
+.btn-login {
+  background-color: rgba(1, 20, 8, 0.941);
+  color: white;
+  padding: .7rem 0;
+}
