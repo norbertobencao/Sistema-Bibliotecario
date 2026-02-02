@@ -23,7 +23,8 @@ body{
   top: 0;
   left: 0;
   z-index: -1;
-  background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f');
+  /* background-image: url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f'); */
+  background-image: url('https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=928&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-size: cover;
   background-position: center;
 
