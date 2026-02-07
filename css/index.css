@@ -8,11 +8,14 @@ body{
     "wdth" 100;
 }
 
-/* Fundo com imagem */
+
+
+/* ################## INDEX ##############################*/
+
 .bg-image {
   min-height: 100vh;
   position: relative;
-  background-color: rgba(42, 41, 41, 0.749);
+  background-color: rgba(42, 41, 41, 0.615);
 }
 
 .bg-image::after {

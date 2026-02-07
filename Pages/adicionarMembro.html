@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libgest - Adicionar Membro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .page-title,
+        .sidebar h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .btn,
+        button,
+        .add-btn,
+        .filter-btn,
+        .action-btn {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        body {
+            background-color: #ffffff;
+        }
+
+        .sidebar {
+            background-color: #2c3e50;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            overflow-y: auto;
+            color: white;
+        }
+
+        .sidebar-nav {
+            padding: 20px 0;
+        }
+
+        .sidebar-nav .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            color: #a8b4c0;
+            font-size: 14px;
+        }
+
+        .sidebar-nav .nav-item:hover {
+            background-color: #34495e;
+        }
+
+        .sidebar-nav .nav-item.active {
+            background-color: #475569;
+            color: white;
+        }
+
+        .sidebar-nav .nav-section {
+            color: #a8b4c0;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 20px 20px 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .sidebar-nav .nav-item i {
+            margin-right: 10px;
+            width: 18px;
+        }
+
+        .user-profile {
+            position: absolute;
+            bottom: 13px;
+            left: 0;
+            right: 0;
+            padding: 0 20px;
+            background-color: #34495e;
+            border-radius: 8px;
+            margin: 0 10px;
+            padding: 15px;
+        }
+
+        .user-profile-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #7f8c8d;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .main-content {
+            margin-left: 240px;
+            padding: 30px;
+        }
+
+        .search-box {
+            background-color: #e8e4f3;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 20px;
+            color: #333;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .search-box::placeholder {
+            color: #ccc;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .filter-btn {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: #333;
+        }
+
+        .filter-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .form-input {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            width: 100%;
+            transition: border-color 0.3s;
+            background-color: #fafafa;
+        }
+
+        .form-input::placeholder {
+            color: #bbb;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #2c3e50;
+            background-color: white;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .form-required {
+            color: #e74c3c;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .btn-primary {
+            background-color: #7f8c8d;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary:hover {
+            background-color: #6c7a7d;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #e8e8e8;
+            color: #999;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d8d8d8;
+            color: #666;
+        }
+
+        .tab-btn {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 400;
+            color: #999;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            margin-right: 0;
+            margin-bottom: -1px;
+        }
+
+        .tab-btn.active {
+            background-color: #475569;
+            color: white;
+            border-bottom-color: transparent;
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: #666;
+        }
+
+        .page-heading {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 24px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-end;
+            margin-top: 40px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Logo -->
+        <div class="px-5 pt-[30px] pb-0">
+            <h1 class="text-3xl font-bold text-white">Libgest</h1>
+        </div>
+
+        <!-- Navigation -->
+        <div class="sidebar-nav">
+            <!-- Dashboard Section -->
+            <div class="nav-section">DashBoard</div>
+            <div class="nav-item">
+                <i class="fas fa-home"></i>Página Inicial
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-book"></i>Itens do Acervo
+            </div>
+            <div class="nav-item active">
+                <i class="fas fa-users"></i>Membros
+            </div>
+
+            <!-- Administração Section -->
+            <div class="nav-section mt-2">Administração</div>
+            <div class="nav-item">
+                <i class="fas fa-chart-bar"></i>Relatórios
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-plus-circle"></i>Adicionar Itens ao Acervo
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-undo"></i>Gerir Empréstimos
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-check-circle"></i>Gerir Devoluções
+            </div>
+
+            <!-- Configurações Section -->
+            <div class="nav-section mt-2">Configurações</div>
+            <div class="nav-item">
+                <i class="fas fa-cog"></i>Configurações
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-question-circle"></i>Ajuda e Suporte
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-sign-out-alt"></i>Terminar Sessão
+            </div>
+        </div>
+
+        <!-- User Profile -->
+        <div class="user-profile">
+            <div class="flex items-center gap-2.5">
+                <div class="user-profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <p class="font-semibold text-sm text-white mb-0.5">Jussana Paim</p>
+                    <p class="text-xs text-gray-300">jussanapaim@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header com Search e Filters -->
+        <div class="flex gap-4 mb-8 items-center flex-wrap">
+            <div class="flex-1 relative min-w-[300px]">
+                <input type="text" class="search-box w-full" placeholder="Pesquisar Membro">
+                <i class="fas fa-search absolute right-4 top-3.5 text-[#999]"></i>
+            </div>
+            <button class="filter-btn">Label</button>
+            <button class="filter-btn">Label</button>
+            <button class="filter-btn">Label</button>
+            <button class="filter-btn">Label</button>
+        </div>
+
+        <!-- Page Title and Actions -->
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="page-heading mb-0">Adicionar Membro</h1>
+            <div class="header-actions">
+                <button class="btn-primary">
+                    <i class="fas fa-plus mr-2"></i>Adicionar
+                </button>
+                <button class="btn-secondary">
+                    <i class="fas fa-download mr-2"></i>Importar
+                </button>
+            </div>
+        </div>
+
+        <!-- Form Content (SEM BOX/CARD) -->
+        <form>
+            <!-- Row 1: Nome Completo e Documento -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6 pr-[8.5rem]">
+                <div class="form-group">
+                    <label class="form-label">
+                        Nome Completo
+                        <span class="form-required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="Ex: João Silva">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Documento (BI ou Passaporte)
+                        <span class="form-required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="Ex: 000123LA234">
+                </div>
+            </div>
+
+            <!-- Row 2: Email Principal e Data -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6 pr-[8.5rem]">
+                <div class="form-group">
+                    <label class="form-label">
+                        Email Principal
+                        <span class="form-required">*</span>
+                    </label>
+                    <input type="email" class="form-input" placeholder="Ex: 2025@">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Data de Nascimento
+                        <span class="form-required">*</span>
+                    </label>
+                    <div class="relative">
+                        <input type="text" class="form-input" placeholder="DD/MM/YY">
+                        <i
+                            class="fas fa-calendar-alt absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Login e Senha -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-6 pr-[8.5rem]">
+                <div class="form-group">
+                    <label class="form-label">
+                        Login
+                        <span class="form-required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="Número de Matrícula/Colaborador">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Senha
+                        <span class="form-required">*</span>
+                    </label>
+                    <div class="relative">
+                        <input type="password" class="form-input" placeholder="••••••••••••">
+                        <i
+                            class="fas fa-eye absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex gap-0 mb-6 border-b border-gray-200">
+                <button type="button" class="tab-btn active">Estudante</button>
+                <button type="button" class="tab-btn">Colaborador</button>
+            </div>
+
+            <!-- Row 4: Turma, Matrícula e Curso -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-6">
+                <div class="form-group">
+                    <label class="form-label">
+                        Turma
+                        <span class="form-required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="Ex: EINF1_TI">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Matrícula
+                        <span class="form-required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="Ex: 20250121">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Curso
+                        <span class="form-required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="Ex: Engenharia Informática">
+                </div>
+            </div>
+
+            <!-- Row 5: Número de Colaborador e Cargo -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="form-group">
+                    <label class="form-label">
+                        Número de Colaborador
+                        <span class="form-required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">
+                        Cargo
+                        <span class="form-required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="">
+                </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="btn-actions">
+                <button type="reset" class="btn-secondary">
+                    Cancelar
+                </button>
+                <button type="submit" class="btn-primary">
+                    <i class="fas fa-lock mr-2"></i>Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
